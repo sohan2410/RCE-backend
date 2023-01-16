@@ -35,6 +35,44 @@ class Controller {
             }
           })
           break
+        case "py":
+          console.log(filePath)
+          exec(`cd ${dir} && python ${fileName}`, (error, stdout, stderr) => {
+            console.log(error, stdout, stderr)
+            if (error) throw error
+            if (stdout) {
+              res.status(200).json({
+                status: true,
+                message: "File executed successfully",
+                output: stdout,
+              })
+            } else if (stderr) {
+              res.status(200).json({
+                status: false,
+                message: stderr,
+              })
+            }
+          })
+          break
+        case "java":
+          console.log(filePath)
+          exec(`cd ${dir} && javac ${fileName}`, (error, stdout, stderr) => {
+            console.log(error, stdout, stderr)
+            if (error) throw error
+            if (stdout) {
+              res.status(200).json({
+                status: true,
+                message: "File executed successfully",
+                output: stdout,
+              })
+            } else if (stderr) {
+              res.status(200).json({
+                status: false,
+                message: stderr,
+              })
+            }
+          })
+          break
         default:
           res.status(200).json({
             status: false,
