@@ -56,7 +56,7 @@ class Controller {
           break
         case "java":
           console.log(filePath)
-          exec(`cd ${dir} && javac ${fileName}`, (error, stdout, stderr) => {
+          exec(`cd ${dir} && java ${fileName}`, (error, stdout, stderr) => {
             console.log(error, stdout, stderr)
             if (error) throw error
             if (stdout) {
