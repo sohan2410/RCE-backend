@@ -15,8 +15,8 @@ class Controller {
     try {
       await executeValidator.validateAsync(req.body)
       const { format, code } = req.body
-      const fileName = `${uuid()}.${format}`
-      const filePath = path.join(dir, fileName)
+      const fileName = `${uuid()}`
+      const filePath = path.join(dir, `${fileName}.${format}`)
       fs.writeFileSync(filePath, code)
       exec(command(dir, fileName, format), (error, stdout, stderr) => {
         if (stdout) {
@@ -26,6 +26,7 @@ class Controller {
             output: stdout,
           })
         } else if (stderr) {
+          console.log(error)
           res.status(200).json({
             status: false,
             message: stderr,
