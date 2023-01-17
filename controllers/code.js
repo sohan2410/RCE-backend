@@ -4,9 +4,11 @@ const { v4: uuid } = require("uuid")
 const { executeValidator } = require("../validators/code")
 const { exec } = require("child_process")
 const dir = path.join(__dirname, "../", "uploads", "codes")
+
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true })
 }
+
 class Controller {
   async execute(req, res, next) {
     try {
