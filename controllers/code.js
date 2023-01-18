@@ -25,6 +25,9 @@ class Controller {
             message: "File executed successfully",
             output: stdout,
           })
+          fs.unlink(filePath, (err) => {
+            if (err) next(err)
+          })
         } else if (stderr) {
           console.log(error)
           res.status(200).json({
