@@ -1,17 +1,17 @@
-const fs = require("fs")
-const path = require("path")
-const { v4: uuid } = require("uuid")
-const { executeValidator } = require("../validators/code")
-const { exec } = require("child_process")
-const command = require("../utils/commands")
+import { Request, Response, NextFunction } from "express"
+import fs from "fs"
+import path from "path"
+import { v4 as uuid } from "uuid"
+import { exec } from "child_process"
+import { executeValidator } from "../validators/code"
+import { command } from "../utils/commands"
 const dir = path.join(__dirname, "../", "uploads", "codes")
-
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true })
 }
 
 class Controller {
-  async execute(req, res, next) {
+  async execute(req: Request, res: Response, next: NextFunction) {
     try {
       await executeValidator.validateAsync(req.body)
       const { format, code } = req.body
@@ -41,4 +41,4 @@ class Controller {
     }
   }
 }
-module.exports = new Controller()
+export const controller = new Controller()

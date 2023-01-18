@@ -1,4 +1,4 @@
-const command = (dir, fileName, format) => {
+export const command = (dir: string, fileName: string, format: string): string => {
   switch (format) {
     case "js":
       return `cd ${dir} && node ${fileName}.js`
@@ -11,7 +11,6 @@ const command = (dir, fileName, format) => {
     case "cpp":
       return `cd ${dir} && g++ ${fileName}.cpp -o a.out && bash -c "./a.out"`
     default:
-      break
+      throw `Command not found for ${format}`
   }
 }
-module.exports = command
