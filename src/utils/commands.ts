@@ -11,6 +11,8 @@ export const command = (dir: string, fileName: string, format: string): string =
     case "cpp":
       return `cd ${dir} && g++ ${fileName}.cpp -o a.out && bash -c "./a.out"`
     default:
-      throw `Command not found for ${format}`
+      const err = new Error(`command not found: ${fileName}`)
+      err.name = "CommandError"
+      throw err
   }
 }

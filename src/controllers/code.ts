@@ -32,7 +32,8 @@ class Controller {
           console.log(error)
           res.status(200).json({
             status: false,
-            message: stderr,
+            message: "stderr",
+            error: stderr,
           })
         }
       })
