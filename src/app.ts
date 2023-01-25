@@ -2,6 +2,7 @@ import express, { Request, Response, Application } from "express"
 import cors from "cors"
 import bodyParser from "body-parser"
 import { errorHandler } from "./middlewares/exceptions/handler"
+import helmet from "helmet"
 
 const app: Application = express()
 
@@ -11,6 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors<Request>())
+app.use(helmet())
 
 app.use("/api/code", require("./routes/code"))
 
