@@ -1,5 +1,7 @@
 node_modules
-.env
+DockerFile
 .git
+.env
 .vscode
 dist
+/src/uploads

@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors<Request>())
 
-app.use("/code", require("./routes/code"))
+app.use("/api/code", require("./routes/code"))
 
 app.get("/", (_, res: Response) => {
   res.send("Server is listening for requests")
