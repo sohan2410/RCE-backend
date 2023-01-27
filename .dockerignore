@@ -4,3 +4,4 @@ DockerFile
 .env
 .vscode
 dist
+/src/uploads
