@@ -1,11 +1,11 @@
 export const command = (dir: string, fileName: string, format: string): string => {
   switch (format) {
     case "js":
-      return `cd ${dir} && node ${fileName}.js`
+      return `cd ${dir} && node ${fileName}.js < ${fileName}.txt`
     case "java":
-      return `cd ${dir} && java ${fileName}.java`
+      return `cd ${dir} && java ${fileName}.java < ${fileName}.txt`
     case "py":
-      return `cd ${dir} && python ${fileName}.py ${fileName}.txt`
+      return `cd ${dir} && bash -c "python ${fileName}.py < ${fileName}.txt"`
     case "c":
       return `cd ${dir} && gcc ${fileName}.c -o a.out && bash -c "./a.out < ${fileName}.txt"`
     case "cpp":
