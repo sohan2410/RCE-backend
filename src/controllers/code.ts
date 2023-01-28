@@ -14,7 +14,7 @@ class Controller {
   async execute(req: Request, res: Response, next: NextFunction) {
     try {
       await executeValidator.validateAsync(req.body)
-      const { format, code, input } = req.body
+      const { format, code, input = " " } = req.body
       const fileName = `${uuid()}`
       const filePath = path.join(dir, `${fileName}.${format}`)
       const inputFilePath = path.join(dir, `${fileName}.txt`)
@@ -34,7 +34,6 @@ class Controller {
             if (err) next(err)
           })
         } else if (stderr) {
-          console.log(error)
           res.status(200).json({
             status: false,
             message: "stderr",

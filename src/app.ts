@@ -15,9 +15,16 @@ app.use(cors<Request>())
 app.use("/api/code", require("./routes/code"))
 
 app.get("/", (_, res: Response) => {
-  res.send("Server is listening for requests")
+  res.status(200).json({
+    status: true,
+    message: "Server is listening for requests",
+  })
 })
+
 app.use(errorHandler)
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
+
+export default app
