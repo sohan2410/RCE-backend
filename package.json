@@ -4,7 +4,7 @@
   "description": "remote code executor backend",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/app.js",
+    "start": "npm run test && npm run build && node ./dist/app.js",
     "dev": "set env NODE_ENV='development' && nodemon ./src/app.ts",
     "build": "npx tsc",
     "eslint:fix": "eslint --fix",
