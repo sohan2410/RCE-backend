@@ -16,4 +16,4 @@ jobs:
           fetch-depth: 0
           ref: main
       - name: Build the Docker Image
-        run: sudo docker stop nodeapi || true && sudo docker rm nodeapi || true && sudo docker build -t server .  && sudo docker run -d -p 3000:3000 --name nextjs server
+        run: sudo docker stop nodeapi || true && sudo docker rm nodeapi || true && sudo docker build -t server .  && sudo docker run -d -p 8000:8000 --name nodeapi server
