@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express"
 import fs from "fs"
 import path from "path"
 import { v4 as uuid } from "uuid"
-import { exec } from "child_process"
+import { exec, ExecOptions} from "child_process"
 import { executeValidator } from "../validators/code"
 import { command } from "../utils/commands"
 const dir = path.join(__dirname, "../", "uploads", "codes")
@@ -20,8 +20,19 @@ class Controller {
       const inputFilePath = path.join(dir, `${fileName}.txt`)
       fs.writeFileSync(filePath, code)
       fs.writeFileSync(inputFilePath, input)
-      exec(command(dir, fileName, format), (error, stdout, stderr) => {
-        if (stdout) {
+      const options : ExecOptions = {
+        timeout: 2000,
+        maxBuffer: 1024 * 1024 * 250,
+        killSignal: 'SIGKILL',
+      }
+      exec(command(dir, fileName, format), options,(error, stdout, stderr) => {
+        if(error){
+          res.status(200).json({
+            status: false,
+            error: error.code || error.signal,
+          })
+        }
+        else if (stdout) {
           res.status(200).json({
             status: true,
             message: "File executed successfully",
