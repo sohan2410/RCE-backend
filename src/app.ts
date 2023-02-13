@@ -20,11 +20,12 @@ app.get("/", (_, res: Response) => {
     message: "Server is listening for requests",
   })
 })
-
+app.use((_: Request, res: Response) => {
+  res.send({ message: "Server is running" })
+})
 app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
-
 export default app

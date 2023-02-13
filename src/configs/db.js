@@ -9,5 +9,4 @@ const connectDB = () => {
     .then(() => console.log("Database connection established successfully"))
     .catch((error) => console.log("Error connecting to Database ", error))
 }
-
-module.exports = connectDB
+export default connectDB
