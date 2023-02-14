@@ -1,51 +1,25 @@
 module.exports = {
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
   env: {
-    mocha: true,
-    es2021: true,
     node: true,
   },
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "airbnb-base", "plugin:prettier/recommended", "plugin:import/errors", "plugin:import/warnings", "plugin:import/typescript"],
   parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-  plugins: ["@typescript-eslint", "prettier", "import"],
-  rules: {
-    "prettier/prettier": "warn",
-    "import/extensions": "off",
-    "import/prefer-default-export": "off",
-    "import/no-unresolved": "error",
-    "no-underscore-dangle": "off",
-    "no-throw-literal": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "no-console": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "import/order": [
-      "error",
-      {
-        "newlines-between": "never",
-        groups: [
-          ["builtin", "external"],
-          ["internal", "parent", "sibling", "index"],
-        ],
-      },
-    ],
-  },
+  plugins: ["@typescript-eslint"],
   settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts"],
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      node: {
-        extensions: [".js", ".ts"],
-        moduleDirectory: ["node_modules", "src/"],
-      },
-      typescript: {
-        alwaysTryTypes: true,
-        project: "./tsconfig.json",
-      },
+      typescript: {},
     },
+  },
+  parserOptions: {
+    project: "./tsconfig.json",
+    tsconfigRootDir: "./",
+    sourceType: "module",
+    ecmaVersion: 2019,
+  },
+  rules: {
+    "@typescript-eslint/no-explicit-any": "off",
   },
 }

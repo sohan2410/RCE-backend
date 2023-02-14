@@ -5,4 +5,4 @@ const router = express.Router()
 
 router.post("/execute", codeController.execute)
 
-module.exports = router
+export default router

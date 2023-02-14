@@ -1,4 +1,4 @@
-service: rce-backend
+service: rcebackend
 
 custom:
   serverless-offline:
@@ -9,23 +9,22 @@ custom:
 provider:
   name: aws
   runtime: nodejs18.x
+  region: "ap-south-1"
   memorySize: 512
   timeout: 10
   logRetentionInDays: 90
   logs:
-    http: true
+    httpApi: true
   httpApi:
     # metrics: true # Enable if you need
     cors: true
 
 functions:
   app:
-    handler: handler.handler
+    handler: src/handler.handler
     # reservedConcurrency: 100
     events:
-      - http:
-          path: "/{proxy+}"
-          method: "*"
+      - httpApi: "*"
 
 package:
   individually: true
