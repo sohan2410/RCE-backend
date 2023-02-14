@@ -5,10 +5,9 @@ import path from "path"
 import { v4 as uuid } from "uuid"
 import { exec, ExecOptions } from "child_process"
 import { command } from "./utils/commands"
+
 const dir = path.join("/tmp")
-// if (!fs.existsSync(dir)) {
-//   fs.mkdirSync(dir, { recursive: true })
-// }
+
 const options: ExecOptions = {
   timeout: 2000,
   maxBuffer: 1024 * 1024 * 250,
