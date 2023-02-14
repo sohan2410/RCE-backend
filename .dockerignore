@@ -5,3 +5,5 @@ DockerFile
 .vscode
 dist
 /src/uploads
+.serverless
+.webpack

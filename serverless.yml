@@ -20,11 +20,20 @@ provider:
     cors: true
 
 functions:
-  app:
-    handler: src/handler.handler
-    # reservedConcurrency: 100
+  home:
+    handler: src/handler.home
     events:
-      - httpApi: "*"
+      - http:
+          path: /
+          method: get
+          cors: true
+  api:
+    handler: src/handler.code
+    events:
+      - http:
+          path: /api/code/execute
+          method: post
+          cors: true
 
 package:
   individually: true

@@ -1,4 +1,5 @@
 export const command = (dir: string, fileName: string, format: string): string => {
+  console.log("commands", dir, fileName, format)
   switch (format) {
     case "js":
       return `cd ${dir} && node ${fileName}.js < ${fileName}.txt`
