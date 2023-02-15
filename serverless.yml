@@ -2,7 +2,7 @@ service: rcebackend
 
 custom:
   serverless-offline:
-    httpPort: 4000
+    httpPort: 8000
     noPrependStageInUrl: true
     reloadHandler: true
 
