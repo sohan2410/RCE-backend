@@ -16,19 +16,11 @@ provider:
   logs:
     httpApi: true
   httpApi:
-    # metrics: true # Enable if you need
     cors: true
 
 functions:
-  home:
-    handler: src/handler.home
-    events:
-      - http:
-          path: /
-          method: get
-          cors: true
   api:
-    handler: src/handler.code
+    handler: index.handler
     events:
       - http:
           path: /api/code/execute

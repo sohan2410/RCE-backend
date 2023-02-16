@@ -5,3 +5,4 @@
 /src/uploads
 .serverless
 .webpack
+/tmp

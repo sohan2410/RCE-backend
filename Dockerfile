@@ -1,12 +1,14 @@
-FROM node:18
-WORKDIR /app
-RUN apt-get update && \
-    apt-get install -y openjdk-11-jre-headless && \
-    apt-get clean;
-RUN apt-get install -y python
-COPY ./package*.json ./
+FROM public.ecr.aws/lambda/nodejs:16 as builder
+WORKDIR /usr/app
+COPY package.json index.ts  ./
 RUN npm install
-COPY . .
-EXPOSE 8000
-CMD ["npm", "run", "dev"]
+RUN npm run build
+    
 
+FROM public.ecr.aws/lambda/nodejs:16
+RUN yum -y groupinstall "Development Tools"
+RUN yum install -y python37
+RUN yum install -y java-1.8.0-openjdk
+WORKDIR ${LAMBDA_TASK_ROOT}
+COPY --from=builder /usr/app/dist/* ./
+CMD ["index.handler"]
