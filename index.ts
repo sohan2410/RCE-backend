@@ -3,8 +3,10 @@ import fs from "fs"
 import path from "path"
 import { exec, ExecOptions } from "child_process"
 
-const dir = path.join("/tmp")
-
+const dir = path.join(__dirname, "uploads", "codes")
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true })
+}
 const options: ExecOptions = {
   timeout: 5000,
   maxBuffer: 1024 * 1024 * 250,
@@ -26,15 +28,15 @@ const execPromise = (command: string) => {
 const command = (dir: string, fileName: string, format: string): string => {
   switch (format) {
     case "c":
-      return `cd /tmp && bash -c "gcc ${fileName}.c -o a.out" && bash -c "./a.out < ${fileName}.txt"`
+      return `cd ${dir} && bash -c "gcc ${fileName}.c"`
     case "cpp":
-      return `cd /tmp && bash -c "g++ ${fileName}.cpp -o a.out" && bash -c "./a.out < ${fileName}.txt"`
+      return `cd ${dir} && bash -c "g++ ${fileName}.cpp -o a.out" && bash -c "./a.out < ${fileName}.txt"`
     case "js":
-      return `cd /tmp && bash -c "node ${fileName}.js < ${fileName}.txt"`
+      return `cd ${dir} && bash -c "node ${fileName}.js < ${fileName}.txt"`
     case "java":
-      return `cd /tmp && bash -c "java ${fileName}.java < ${fileName}.txt"`
+      return `cd ${dir} && bash -c "java ${fileName}.java < ${fileName}.txt"`
     case "py":
-      return `cd /tmp && bash -c "python ${fileName}.py < ${fileName}.txt"`
+      return `cd ${dir} && bash -c "python3 ${fileName}.py < ${fileName}.txt"`
     default: {
       const err = new Error(`command not found: ${fileName}`)
       err.name = "CommandError"
