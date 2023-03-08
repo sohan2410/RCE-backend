@@ -58,8 +58,10 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Methods": "*",
       },
       body: JSON.stringify({ status: true, message: "File executed successfully!", result }),
     }
@@ -67,8 +69,9 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Methods": "*",
       },
       body: JSON.stringify({ status: false, message: error.message || "Something went wrong, please try again later", error }),
     }
