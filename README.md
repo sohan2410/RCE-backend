@@ -37,7 +37,7 @@ Remote Code Executor (RCE) as the name suggests, is an online code executor like
 |NextJS| To build frontend application  |
 |Ace Editor|Online IDE Code Editor|
 |AWS Lambda|Serverless Compute service|
-|Cloudformation|Monitor lambda function logs|
+|Cloudwatch|Monitor lambda function logs|
 |API Gateway|To trigger lambda functions|
 |Docker|To build containerized applications|
 |Serverless framework|To build serverless applications|
